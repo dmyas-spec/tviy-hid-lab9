@@ -33,3 +33,6 @@ header details[open] summary {
     transition-duration: 0s !important;
   }
 }
+
+/* Closed native dialog must stay hidden even if utilities are changed. */
+#feedbackModal:not([open]) { display: none; }

@@ -1,0 +1,51 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { validateName, validateEmail, validatePhone, validateMessage, validateAgreement } from "../js/validation-rules.mjs";
+
+const cases = [
+  ["ім’я: кирилиця", validateName, "Ірина", true],
+  ["ім’я: латиниця й апостроф", validateName, "Mary O'Connor", true],
+  ["ім’я: дефіс", validateName, "Марія-Анна", true],
+  ["ім’я: trim", validateName, "  Ірина  ", true],
+  ["ім’я: порожнє", validateName, "", false],
+  ["ім’я: лише пробіли", validateName, "    ", false],
+  ["ім’я: один символ", validateName, "І", false],
+  ["ім’я: цифри", validateName, "Іван123", false],
+  ["ім’я: emoji", validateName, "🙂🙂", false],
+  ["ім’я: понад 60", validateName, "А".repeat(61), false],
+  ["ім’я: HTML", validateName, "<b>Ірина</b>", false],
+  ["email: звичайний", validateEmail, "student@example.com", true],
+  ["email: plus і крапки", validateEmail, "student.name+tag@example.com", true],
+  ["email: верхній регістр", validateEmail, "STUDENT@EXAMPLE.COM", true],
+  ["email: без @", validateEmail, "student.example.com", false],
+  ["email: без доменної крапки", validateEmail, "student@example", false],
+  ["email: дві @", validateEmail, "a@@example.com", false],
+  ["email: подвійна крапка", validateEmail, "a..b@example.com", false],
+  ["email: пробіл", validateEmail, "a b@example.com", false],
+  ["email: дефіс на початку домену", validateEmail, "a@-example.com", false],
+  ["email: занадто довга локальна частина", validateEmail, "a".repeat(65)+"@example.com", false],
+  ["телефон: правильний", validatePhone, "+380501234567", true],
+  ["телефон: інший правильний", validatePhone, "+380671112233", true],
+  ["телефон: локальний", validatePhone, "0501234567", false],
+  ["телефон: лише префікс", validatePhone, "+380", false],
+  ["телефон: замало цифр", validatePhone, "+38050123456", false],
+  ["телефон: забагато цифр", validatePhone, "+3805012345678", false],
+  ["телефон: пробіли", validatePhone, "+380 50 123 45 67", false],
+  ["телефон: пробіл у кінці", validatePhone, "+380501234567 ", false],
+  ["телефон: дужки", validatePhone, "+380(50)1234567", false],
+  ["телефон: дефіси", validatePhone, "+380-50-123-45-67", false],
+  ["телефон: літери", validatePhone, "+380abc123456", false],
+  ["телефон: перенос рядка", validatePhone, "+380501234567\n", false],
+  ["повідомлення: мінімум", validateMessage, "1234567890", true],
+  ["повідомлення: максимум", validateMessage, "а".repeat(1000), true],
+  ["повідомлення: коротке", validateMessage, "коротко", false],
+  ["повідомлення: пробіли", validateMessage, "          ", false],
+  ["повідомлення: понад максимум", validateMessage, "а".repeat(1001), false],
+  ["повідомлення: HTML є текстом", validateMessage, "<script>alert(1)</script>", true],
+  ["повідомлення: emoji дозволені", validateMessage, "Шукаю гру для друзів 🎲", true],
+  ["згода: checked", validateAgreement, true, true],
+  ["згода: unchecked", validateAgreement, false, false],
+];
+for (const [name, validator, input, expected] of cases) {
+  test(name, () => assert.equal(validator(input) === "", expected));
+}

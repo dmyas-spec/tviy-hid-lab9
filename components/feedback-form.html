@@ -1,0 +1,51 @@
+<form id="feedbackForm" action="#contact" method="post" novalidate
+  class="grid min-w-0 grid-cols-1 gap-6 rounded-panel border border-sage bg-white p-4 shadow-card md:grid-cols-2 md:p-8" aria-describedby="feedbackNote">
+  <p id="feedbackNote" class="text-sm leading-relaxed text-muted md:col-span-2">Навчальна форма: введене перевіряється тільки у цій вкладці. Реального надсилання повідомлення немає.</p>
+  <div class="min-w-0 space-y-2 ">
+      <label class="block font-semibold" for="username">Ім’я <span class="text-sm font-normal text-muted">(обов’язково)</span></label>
+      <input id="username" name="username" aria-describedby="usernameHint usernameError usernameSuccess" aria-invalid="false" data-state="normal" required class="min-h-12 min-w-0 w-full rounded-control border border-line bg-white px-4 py-3 text-ink outline-offset-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand motion-reduce:transition-none" autocomplete="name" maxlength="60" type="text">
+      <p class="text-sm text-muted" id="usernameHint">2–60 символів: літери, пробіл, апостроф або дефіс.</p>
+      <p class="text-sm font-medium text-red-700" id="usernameError" hidden></p>
+      <p class="text-sm font-medium text-green-800" id="usernameSuccess" hidden>✓ Поле заповнено коректно.</p>
+    </div>
+<div class="min-w-0 space-y-2 ">
+      <label class="block font-semibold" for="email">Електронна пошта <span class="text-sm font-normal text-muted">(обов’язково)</span></label>
+      <input id="email" name="email" aria-describedby="emailHint emailError emailSuccess" aria-invalid="false" data-state="normal" required class="min-h-12 min-w-0 w-full rounded-control border border-line bg-white px-4 py-3 text-ink outline-offset-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand motion-reduce:transition-none" autocomplete="email" maxlength="254" inputmode="email" autocapitalize="none" spellcheck="false" type="email">
+      <p class="text-sm text-muted" id="emailHint">Наприклад, name@example.com.</p>
+      <p class="text-sm font-medium text-red-700" id="emailError" hidden></p>
+      <p class="text-sm font-medium text-green-800" id="emailSuccess" hidden>✓ Поле заповнено коректно.</p>
+    </div>
+<div class="min-w-0 space-y-2 md:col-span-2">
+      <label class="block font-semibold" for="phone">Телефон <span class="text-sm font-normal text-muted">(обов’язково)</span></label>
+      <input id="phone" name="phone" aria-describedby="phoneHint phoneError phoneSuccess" aria-invalid="false" data-state="normal" required class="min-h-12 min-w-0 w-full rounded-control border border-line bg-white px-4 py-3 text-ink outline-offset-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand motion-reduce:transition-none" autocomplete="tel" inputmode="tel" aria-required="true" type="tel">
+      <p class="text-sm text-muted" id="phoneHint">Формат: +380 і 9 цифр, без пробілів та дефісів.</p>
+      <p class="text-sm font-medium text-red-700" id="phoneError" hidden></p>
+      <p class="text-sm font-medium text-green-800" id="phoneSuccess" hidden>✓ Поле заповнено коректно.</p>
+    </div>
+<div class="min-w-0 space-y-2 md:col-span-2">
+      <label class="block font-semibold" for="message">Яку гру шукаєш? <span class="text-sm font-normal text-muted">(обов’язково)</span></label>
+      <textarea id="message" name="message" aria-describedby="messageHint messageError messageSuccess" aria-invalid="false" data-state="normal" required class="min-h-12 min-w-0 w-full rounded-control border border-line bg-white px-4 py-3 text-ink outline-offset-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand motion-reduce:transition-none"  rows="5" minlength="10" maxlength="1000"></textarea>
+      <p class="text-sm text-muted" id="messageHint">10–1000 символів. Розкажи про компанію та бажаний вечір.</p>
+      <p class="text-sm font-medium text-red-700" id="messageError" hidden></p>
+      <p class="text-sm font-medium text-green-800" id="messageSuccess" hidden>✓ Поле заповнено коректно.</p>
+    </div>
+  <div class="min-w-0 space-y-2 md:col-span-2">
+    <div class="flex min-h-12 items-start gap-3">
+      <input id="agreement" name="agreement" type="checkbox" required
+        class="mt-3 h-5 w-5 shrink-0 rounded border border-line accent-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+        aria-describedby="agreementHint agreementError agreementSuccess" aria-invalid="false" data-state="normal">
+      <label class="flex min-h-12 cursor-pointer items-center text-sm leading-relaxed" for="agreement">Погоджуюся з політикою конфіденційності навчальної форми.</label>
+    </div>
+    <p class="text-sm text-muted" id="agreementHint">Політику можна прочитати нижче. Згода потрібна для демонстрації перевірки.</p>
+    <p class="text-sm font-medium text-red-700" id="agreementError" hidden></p>
+    <p class="text-sm font-medium text-green-800" id="agreementSuccess" hidden>✓ Згоду підтверджено.</p>
+  </div>
+  <details class="rounded-control bg-cream p-4 text-sm md:col-span-2">
+    <summary class="flex min-h-12 cursor-pointer items-center font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand">Політика навчальної форми</summary>
+    <p class="mt-3 leading-relaxed text-muted">Введене використовується лише для перевірки у поточній вкладці. Ця форма не надсилає його на сервер, не зберігає у localStorage та не створює реального звернення. Після успішної перевірки поля очищаються. Для демонстрації використовуй вигадані дані.</p>
+  </details>
+  <p id="formStatus" class="text-sm font-semibold text-red-700 md:col-span-2" aria-live="polite" aria-atomic="true"></p>
+  <button id="feedbackSubmit" type="submit" disabled
+    class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-control bg-brand px-5 py-3 font-semibold text-white transition-colors hover:bg-brand-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand active:bg-brand-active disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none md:col-span-2">Надіслати</button>
+  <noscript><p class="font-semibold text-red-700">Для навчальної перевірки потрібен JavaScript. Надсилання вимкнено.</p></noscript>
+</form>
